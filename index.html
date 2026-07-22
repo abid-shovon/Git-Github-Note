@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git ও GitHub — সম্পূর্ণ গাইড</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ PRINT BUTTON ============ -->
+    <button class="print-btn" onclick="window.print()">
+        📄 PDF হিসেবে সেভ করুন
+    </button>
+
+    <!-- ============ COVER PAGE ============ -->
+    <div class="cover-page">
+        <div class="cover-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.6 10.59L8.38 4.8l1.69 1.7c-.24.85.15 1.78.93 2.23v5.54c-.6.34-1 .99-1 1.73a2 2 0 002 2 2 2 0 002-2c0-.74-.4-1.39-1-1.73V9.41l1.35 1.36c-.03.15-.05.3-.05.46a2 2 0 002 2 2 2 0 002-2 2 2 0 00-2-2c-.49 0-.94.18-1.29.47L12.38 7l.69-.7c.46.2.97.26 1.48.12.71-.18 1.28-.75 1.47-1.46.26-1-.21-2.01-1.13-2.42a2.04 2.04 0 00-2.52.73c-.32.53-.37 1.17-.15 1.74L8.38 8.94l-1.7-1.69c.2-.47.25-.98.12-1.48-.19-.72-.76-1.29-1.47-1.47-.99-.27-2.01.2-2.41 1.12-.42.94-.12 2.04.7 2.65l.37.22.16.07zM12 18a2 2 0 002 2 2 2 0 002-2 2 2 0 00-2-2 2 2 0 00-2 2z"/>
+            </svg>
+        </div>
+        <h1 class="cover-title">Git ও GitHub</h1>
+        <p class="cover-subtitle">ভার্সন কন্ট্রোল থেকে কোলাবোরেশন — একটি সম্পূর্ণ বাংলা গাইড</p>
+        <div class="cover-badge">
+            ⚡ বিগিনার থেকে প্রফেশনাল লেভেল পর্যন্ত
+        </div>
+        <div class="cover-meta">
+            <span>📅 জুলাই ২০২৬</span>
+            <span>📘 সম্পূর্ণ রেফারেন্স নোট</span>
+            <span>🎯 হ্যান্ডস-অন প্র্যাকটিক্যাল</span>
+        </div>
+    </div>
+
+    <!-- ============ TABLE OF CONTENTS ============ -->
+    <div class="toc-page container">
+        <div class="toc-header">
+            📑 সূচিপত্র
+        </div>
+        <ul class="toc-list">
+            <li class="toc-item">
+                <span class="toc-number">01</span>
+                <span class="toc-text">Git ও GitHub-এর পরিচিতি</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">02</span>
+                <span class="toc-text">গিট কীভাবে কাজ করে — চারটি স্টেজ</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">03</span>
+                <span class="toc-text">গিট কনফিগারেশন ও ইনিশিয়ালাইজেশন</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">04</span>
+                <span class="toc-text">স্টেজিং, কমিট ও হিস্ট্রি</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">05</span>
+                <span class="toc-text">ফাইল ইগনোর করা — .gitignore</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">06</span>
+                <span class="toc-text">ফাঁকা ফোল্ডার ট্র্যাক করা — .gitkeep</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">07</span>
+                <span class="toc-text">ব্রাঞ্চিং — শাখা তৈরি ও ব্যবস্থাপনা</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">08</span>
+                <span class="toc-text">মার্জ কনফ্লিক্ট ও সমাধান</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">09</span>
+                <span class="toc-text">গিট স্ট্যাশিং — কাজ সাময়িকভাবে লুকিয়ে রাখা</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">10</span>
+                <span class="toc-text">গিট ট্যাগিং — ভার্সন চিহ্নিত করা</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">11</span>
+                <span class="toc-text">গিট রিবেস — ক্লিন হিস্ট্রি</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">12</span>
+                <span class="toc-text">GitHub-এ কোড হোস্ট ও কোলাবোরেশন</span>
+                <span class="toc-dots"></span>
+            </li>
+            <li class="toc-item">
+                <span class="toc-number">13</span>
+                <span class="toc-text">কুইক রেফারেন্স — সকল কমান্ড এক নজরে</span>
+                <span class="toc-dots"></span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div class="container">
+
+        <!-- ========== SECTION 1: পরিচিতি ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Git ও GitHub-এর পরিচিতি</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🔧</span> Git-এর জন্ম</h3>
+            <div class="card">
+                <p>
+                    Linux অপারেটিং সিস্টেমের সোর্স কোড ম্যানেজ করার জন্য — <strong>কে, কখন এবং কী পরিবর্তন করেছে</strong> তা ট্র্যাক করার উদ্দেশ্যে <strong>Linus Torvalds</strong> ২০০৫ সালের এপ্রিলে মাত্র কয়েকদিনের মধ্যে <strong>Git</strong> তৈরি করেন। আজ এটি পৃথিবীর সবচেয়ে জনপ্রিয় ভার্সন কন্ট্রোল সিস্টেম।
+                </p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🌐</span> DVCS — ডিস্ট্রিবিউটেড ভার্সন কন্ট্রোল সিস্টেম</h3>
+            <div class="comparison">
+                <div class="comp-card">
+                    <h4 style="color: var(--red-light);">❌ সেন্ট্রালাইজড সিস্টেম</h4>
+                    <p style="font-size: 13px;">ইন্টারনেট না থাকলে বা মূল সার্ভার ডাউন হলে পুরো কাজ বন্ধ হয়ে যায়। একটি মাত্র সার্ভারের উপর নির্ভরশীল।</p>
+                </div>
+                <div class="comp-card">
+                    <h4 style="color: var(--green-light);">✅ ডিস্ট্রিবিউটেড সিস্টেম (Git)</h4>
+                    <p style="font-size: 13px;">প্রতিটি ডেভেলপারের লোকাল কম্পিউটারে প্রোজেক্টের সম্পূর্ণ হিস্ট্রি থাকে। অফলাইনেও কাজ করা যায়, ইন্টারনেট পেলে পুশ করা যায়।</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🐱</span> GitHub কী?</h3>
+            <div class="card green">
+                <p>
+                    ২০০৮ সালে <strong>Tom Preston-Werner</strong> সহ কয়েকজন ডেভেলপার মিলে <strong>GitHub</strong> ওয়েবসাইট তৈরি করেন। এটি Git রিপোজিটরিগুলোকে অনলাইনে হোস্ট করার সুবিধা দেয়। প্ল্যাটফর্মটি এতটাই জনপ্রিয় হয় যে ২০১৮ সালে <strong>Microsoft</strong> এটিকে <strong>৭.৫ বিলিয়ন ডলারে</strong> অধিগ্রহণ করে।
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 2: কীভাবে কাজ করে ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <h2 class="section-title">গিট কীভাবে কাজ করে — চারটি স্টেজ</h2>
+            </div>
+
+            <p>গিট মূলত <strong>৪টি প্রধান স্টেজের</strong> মাধ্যমে কোড পরিচালনা করে। বিভিন্ন কমান্ড ব্যবহার করে ফাইলগুলোকে একটি স্টেজ থেকে অন্য স্টেজে নিয়ে যাওয়া হয়:</p>
+
+            <!-- Flow Diagram -->
+            <div class="flow-container">
+                <div class="flow-box">
+                    <div class="flow-label">Working Directory</div>
+                    <div class="flow-desc">কোড লেখা ও এডিট</div>
+                </div>
+                <div class="flow-arrow">
+                    →
+                    <div class="flow-cmd">git add</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-label">Staging Area</div>
+                    <div class="flow-desc">কমিটের জন্য প্রস্তুত</div>
+                </div>
+                <div class="flow-arrow">
+                    →
+                    <div class="flow-cmd">git commit</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-label">Local Repo</div>
+                    <div class="flow-desc">লোকাল কম্পিউটারে সেভ</div>
+                </div>
+                <div class="flow-arrow">
+                    →
+                    <div class="flow-cmd">git push</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-label">Remote Repo</div>
+                    <div class="flow-desc">GitHub / GitLab</div>
+                </div>
+            </div>
+
+            <div class="step-container">
+                <div class="step" data-step="1">
+                    <div class="step-title">ওয়ার্কিং ডিরেক্টরি (Working Directory)</div>
+                    <p><span class="cmd">git init</span> দিয়ে নতুন রিপোজিটরি তৈরি করলে বা <span class="cmd">git clone</span> দিয়ে রিমোট থেকে ডাউনলোড করলে কোড এই স্টেজে থাকে। এখানেই মূলত কোড লেখা, এডিট করা বা নতুন ফাইল যোগ করা হয়।</p>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-title">স্টেজিং এরিয়া (Staging Area)</div>
+                    <p>নির্দিষ্ট যে ফাইলগুলোর স্ন্যাপশট তৈরি করতে চান, সেগুলোকে <span class="cmd">git add</span> কমান্ড দিয়ে স্টেজিং এরিয়াতে পাঠানো হয়। এর মানে আপনি গিটকে জানাচ্ছেন — এই পরিবর্তনগুলো সেভ করার জন্য প্রস্তুত।</p>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-title">লোকাল রিপোজিটরি (Local Repository)</div>
+                    <p>স্টেজিং এরিয়ার ফাইলগুলোর একটি চেকপয়েন্ট বা স্ন্যাপশট তৈরি করতে <span class="cmd">git commit -m "message"</span> ব্যবহার করা হয়। একটি উপযুক্ত মেসেজসহ কোডের পরিবর্তনগুলো পার্মানেন্টলি সেভ হয়।</p>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-title">রিমোট রিপোজিটরি (Remote Repository)</div>
+                    <p>লোকালে সেভ করা কোড টিমের সাথে শেয়ার করতে <span class="cmd">git push</span> কমান্ডে রিমোট সার্ভারে পাঠানো হয়। অন্যদের করা পরিবর্তন আনতে <span class="cmd">git pull</span> ব্যবহৃত হয়।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 3: কনফিগারেশন ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <h2 class="section-title">গিট কনফিগারেশন ও ইনিশিয়ালাইজেশন</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">👤</span> প্রথমবার পরিচয় সেট করা</h3>
+            <p>গিট ব্যবহারের শুরুতে আপনার নাম ও ইমেইল সেট করতে হবে, যাতে প্রতিটি কমিটে বোঝা যায় পরিবর্তনটি কে করেছে।</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">Terminal / Git Bash</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="comment"># আপনার নাম সেট করুন</span>
+<span class="keyword">git config</span> <span class="flag">--global</span> user.name <span class="string">"Your Name"</span>
+
+<span class="comment"># আপনার ইমেইল সেট করুন</span>
+<span class="keyword">git config</span> <span class="flag">--global</span> user.email <span class="string">"your.email@example.com"</span>
+                    </code>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🚀</span> রিপোজিটরি তৈরি ও স্ট্যাটাস চেক</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git init</td>
+                        <td>একটি সাধারণ ফোল্ডারকে গিট রিপোজিটরিতে রূপান্তর করে। ভেতরে একটি লুকানো <span class="cmd">.git</span> ডিরেক্টরি তৈরি হয়।</td>
+                    </tr>
+                    <tr>
+                        <td>git status</td>
+                        <td>প্রোজেক্টের বর্তমান অবস্থা দেখায় — কোন ফাইল পরিবর্তন হয়েছে, কোনটি স্টেজিং এরিয়ায় আছে।</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box success">
+                <div class="info-title">💡 প্রো টিপ</div>
+                <p>কাজের প্রতিটি ধাপে <span class="cmd">git status</span> চালানো একটি ভালো অভ্যাস। এটি আপনাকে সবসময় প্রোজেক্টের বর্তমান অবস্থা সম্পর্কে সচেতন রাখবে।</p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 4: স্টেজিং ও কমিট ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">04</div>
+                <h2 class="section-title">স্টেজিং, কমিট ও হিস্ট্রি</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">📦</span> ফাইল স্টেজিং — git add</h3>
+            <p>ওয়ার্কিং ডিরেক্টরি থেকে নির্দিষ্ট ফাইলগুলোকে কমিটের জন্য প্রস্তুত করতে স্টেজিং এরিয়ায় পাঠাতে হয়।</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">স্টেজিং কমান্ড</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="comment"># নির্দিষ্ট ফাইল স্টেজ করুন</span>
+<span class="keyword">git add</span> filename.html
+
+<span class="comment"># ফোল্ডারের সব ফাইল একসাথে স্টেজ করুন</span>
+<span class="keyword">git add</span> .
+                    </code>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">💾</span> কমিট করা — git commit</h3>
+            <p>স্টেজিং এরিয়ার ফাইলগুলোর একটি স্ন্যাপশট বা চেকপয়েন্ট সেভ করাই হলো কমিট। প্রতিটি কমিটে একটি অর্থবহ মেসেজ দিতে হয়।</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">কমিট কমান্ড</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="keyword">git commit</span> <span class="flag">-m</span> <span class="string">"Add user authentication"</span>
+                    </code>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">📝 কমিট মেসেজের নিয়ম</div>
+                <p>কমিট মেসেজ সবসময় <strong>Present Tense</strong> বা বর্তমান কালে লিখুন। যেমন: "Fix bug" ✅ — "Fixed bug" ❌</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">↩️</span> ফাইল আনস্টেজ করা</h3>
+            <p>ভুলক্রমে কোনো ফাইল স্টেজিং এরিয়ায় চলে গেলে তাকে আবার আনস্টেজ করতে:</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">আনস্টেজ কমান্ড</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="keyword">git restore</span> <span class="flag">--staged</span> &lt;filename&gt;
+                    </code>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">📋</span> হিস্ট্রি দেখা — git log</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git log</td>
+                        <td>প্রোজেক্টের শুরু থেকে সকল কমিটের বিস্তারিত হিস্ট্রি দেখায় — কে, কখন, কী কমিট করেছে।</td>
+                    </tr>
+                    <tr>
+                        <td>git log --oneline</td>
+                        <td>প্রতিটি কমিটকে সংক্ষেপে মাত্র এক লাইনে দেখায়। দ্রুত পর্যালোচনার জন্য অত্যন্ত কার্যকর।</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========== SECTION 5: .gitignore ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">05</div>
+                <h2 class="section-title">ফাইল ইগনোর করা — .gitignore</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🤔</span> কেন ফাইল ইগনোর করা দরকার?</h3>
+            <p>প্রোজেক্টের সব ফাইল গিটহাবে পুশ করার প্রয়োজন হয় না। মূলত দুটি কারণে ফাইল ইগনোর করা হয়:</p>
+
+            <div class="comparison">
+                <div class="comp-card" style="border-top: 3px solid var(--orange);">
+                    <h4 style="color: var(--orange-light);">📁 বড় সাইজের ফাইল</h4>
+                    <p style="font-size: 13px;">ভারী বিল্ড ফাইল বা সফটওয়্যার সেটআপ (যেমন: ১ GB সাইজের <span class="cmd">.exe</span> ফাইল)। এগুলো পুশ করলে অযথা ইন্টারনেট ও স্টোরেজ নষ্ট হয়।</p>
+                </div>
+                <div class="comp-card" style="border-top: 3px solid var(--red);">
+                    <h4 style="color: var(--red-light);">🔒 গোপন তথ্য (Secrets)</h4>
+                    <p style="font-size: 13px;"><span class="cmd">.env</span> ফাইলে থাকা ডেটাবেসের পাসওয়ার্ড বা API Key-এর মতো সিক্রেট ক্রেডেনশিয়াল। সিকিউরিটির কারণে এগুলো কখনোই গিটহাবে পুশ করা উচিত নয়।</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">⚙️</span> .gitignore কীভাবে কাজ করে?</h3>
+            <ul class="styled-list">
+                <li>প্রোজেক্টের রুট ফোল্ডারে <span class="cmd">.gitignore</span> নামে একটি ফাইল তৈরি করতে হয়।</li>
+                <li>এই ফাইলের ভেতর যে ফাইল বা ফোল্ডারের নাম লেখা হয়, গিট সেগুলোকে সম্পূর্ণরূপে ইগনোর করে।</li>
+                <li>ইগনোর করা ফাইলগুলো লোকাল কম্পিউটারে ঠিকই থাকে এবং কাজও করে — কিন্তু গিট সেগুলোর পরিবর্তন ট্র্যাক করে না বা রিমোটে পুশ করে না।</li>
+            </ul>
+
+            <h3 class="subsection-title"><span class="emoji">✍️</span> .gitignore সিনট্যাক্স ও নিয়ম</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">.gitignore</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="comment"># নির্দিষ্ট ফাইল ইগনোর</span>
+.env
+secrets.json
+
+<span class="comment"># পুরো ফোল্ডার ইগনোর (শেষে / দিতে হবে)</span>
+builds/
+node_modules/
+
+<span class="comment"># ফোল্ডারের নির্দিষ্ট ফাইল ইগনোর</span>
+builds/build.txt
+                    </code>
+                </div>
+            </div>
+
+            <div class="info-box warning">
+                <div class="info-title">⚠️ গুরুত্বপূর্ণ</div>
+                <p><span class="cmd">.gitignore</span> ফাইলটিকেও অবশ্যই <span class="cmd">git add .gitignore</span> দিয়ে স্টেজ এবং তারপর কমিট করে সেভ করতে হবে।</p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 6: .gitkeep ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">06</div>
+                <h2 class="section-title">ফাঁকা ফোল্ডার ট্র্যাক করা — .gitkeep</h2>
+            </div>
+
+            <div class="card orange">
+                <div class="card-title">⚠️ সমস্যা</div>
+                <p>গিট ডিফল্টভাবে কোনো ফাঁকা (empty) ডিরেক্টরি ট্র্যাক করে না। নতুন কোনো ফাঁকা ফোল্ডার তৈরি করলে <span class="cmd">git status</span> চেক করলে দেখবেন গিট সেটিকে সম্পূর্ণ ইগনোর করছে।</p>
+            </div>
+
+            <div class="card green">
+                <div class="card-title">✅ সমাধান</div>
+                <p>ফাঁকা ডিরেক্টরিকে ট্র্যাক করাতে চাইলে, সেই ফোল্ডারের ভেতরে <span class="cmd">.gitkeep</span> নামের একটি ফাইল তৈরি করে রাখতে হয়। ফলে গিটের কাছে ফোল্ডারটি আর সম্পূর্ণ ফাঁকা থাকে না এবং সফলভাবে ট্র্যাক হতে শুরু করে। এরপর সাধারণ নিয়মে <span class="cmd">git add .</span> ও <span class="cmd">git commit</span> করে সেটিকে সেভ করা যায়।</p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 7: ব্রাঞ্চিং ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">07</div>
+                <h2 class="section-title">ব্রাঞ্চিং — শাখা তৈরি ও ব্যবস্থাপনা</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🌿</span> ব্রাঞ্চিং কী এবং কেন?</h3>
+            <div class="card">
+                <p>
+                    ব্রাঞ্চিং হলো মেইন ব্রাঞ্চের একটি <strong>সম্পূর্ণ স্বাধীন কপি</strong> তৈরি করা। গিট-এ ব্রাঞ্চ মূলত একটি নির্দিষ্ট কমিটকে পয়েন্ট করে রাখে।
+                </p>
+                <p>
+                    সরাসরি মেইন ব্রাঞ্চে কাজ করলে মূল কোড নষ্ট বা ব্রেক হওয়ার ঝুঁকি থাকে। তাই নতুন ফিচার তৈরি বা পরীক্ষামূলক কাজের জন্য আলাদা ব্রাঞ্চ তৈরি করে সেখানে কাজ করা উচিত।
+                </p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">⌨️</span> ব্রাঞ্চিং কমান্ডসমূহ</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git branch &lt;name&gt;</td>
+                        <td>নতুন একটি ব্রাঞ্চ তৈরি করে।</td>
+                    </tr>
+                    <tr>
+                        <td>git switch &lt;name&gt;</td>
+                        <td>এক ব্রাঞ্চ থেকে অন্য ব্রাঞ্চে সুইচ করে।</td>
+                    </tr>
+                    <tr>
+                        <td>git switch -c &lt;name&gt;</td>
+                        <td>শর্টকাট — নতুন ব্রাঞ্চ তৈরি করে এবং সরাসরি সেই ব্রাঞ্চে সুইচ করে।</td>
+                    </tr>
+                    <tr>
+                        <td>git merge &lt;name&gt;</td>
+                        <td>নির্দিষ্ট ব্রাঞ্চের কোড বর্তমান ব্রাঞ্চে যুক্ত (মার্জ) করে।</td>
+                    </tr>
+                    <tr>
+                        <td>git branch -d &lt;name&gt;</td>
+                        <td>মার্জ হয়ে যাওয়া পুরোনো ব্রাঞ্চ ডিলিট করে।</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title"><span class="emoji">🔥</span> ইমার্জেন্সি ফিক্স — ব্রাঞ্চের ব্যবহারিক সুবিধা</h3>
+            <div class="card pink">
+                <p>ফিচার ব্রাঞ্চে কাজ করার মাঝপথে হঠাৎ মেইন প্রোজেক্টে জরুরি বাগ ফিক্স করার প্রয়োজন হলে — অসম্পূর্ণ কাজ রেখেই <span class="cmd">git switch main</span> দিয়ে মেইন ব্রাঞ্চে ফিরে যাওয়া যায়। ফিক্স করে কমিট করার পর আবার ফিচার ব্রাঞ্চে ফিরে অসম্পূর্ণ কাজ চালিয়ে নেওয়া যায়।</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">✨</span> ব্রাঞ্চিংয়ের বেস্ট প্র্যাকটিসেস</h3>
+            <ul class="styled-list green">
+                <li><strong>ডেডিকেটেড ব্রাঞ্চ:</strong> প্রতিটি নতুন ফিচার, বাগ ফিক্স বা পরিবর্তনের জন্য আলাদা ব্রাঞ্চ তৈরি করুন। সরাসরি মেইন ব্রাঞ্চে ডেভেলপমেন্ট করবেন না।</li>
+                <li><strong>অর্থবহ নাম:</strong> ব্রাঞ্চের নাম পড়ে যেন এর কাজ বোঝা যায়। যেমন: <span class="cmd">feature/user-login</span> বা <span class="cmd">bugfix/navbar-crash</span></li>
+                <li><strong>শর্ট-লিভড:</strong> ব্রাঞ্চে কাজ দ্রুত শেষ করে মেইনে মার্জ করুন। দীর্ঘ সময় ফেলে রাখবেন না এবং মার্জের পর ডিলিট করে দিন।</li>
+            </ul>
+        </div>
+
+        <!-- ========== SECTION 8: মার্জ কনফ্লিক্ট ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">08</div>
+                <h2 class="section-title">মার্জ কনফ্লিক্ট ও সমাধান</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">💥</span> মার্জ কনফ্লিক্ট কী?</h3>
+            <div class="card red">
+                <p>
+                    যখন দুটি ব্রাঞ্চে <strong>একই ফাইলের একই জায়গায় ভিন্ন ভিন্ন পরিবর্তন</strong> করা হয় এবং তারপর মার্জ করার চেষ্টা করা হয়, তখন গিট বুঝতে পারে না কোন পরিবর্তনটি রাখতে হবে। ফলে গিটের অটোমেটিক মার্জ প্রক্রিয়া ব্যর্থ হয় — একে <strong>মার্জ কনফ্লিক্ট</strong> বলে।
+                </p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🔍</span> কনফ্লিক্ট মার্কার বোঝা</h3>
+            <p>কনফ্লিক্ট দেখা দিলে গিট ফাইলের ভেতর কিছু মার্কার যুক্ত করে, যা দেখে সহজেই বোঝা যায় কোন অংশ কোন ব্রাঞ্চের:</p>
+
+            <div class="marker-block">
+                <span class="conflict-marker">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br>
+                <span class="conflict-current">বর্তমান ব্রাঞ্চের (মাস্টার) কোড এখানে</span><br>
+                <span class="conflict-marker">=======</span><br>
+                <span class="conflict-incoming">ইনকামিং ব্রাঞ্চের (ফিচার) কোড এখানে</span><br>
+                <span class="conflict-marker">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch</span>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🛠️</span> সমাধানের ধাপ</h3>
+            <div class="step-container">
+                <div class="step" data-step="1">
+                    <div class="step-title">কনফ্লিক্ট ফাইল খুলুন</div>
+                    <p>কনফ্লিক্ট হওয়া ফাইলটি কোড এডিটরে (যেমন: VS Code) খুলুন।</p>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-title">সিদ্ধান্ত নিন ও এডিট করুন</div>
+                    <p>মার্কারগুলো মুছে ফেলুন এবং চূড়ান্ত রূপে কোন কোড রাখতে চান তা ঠিক করুন।</p>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-title">স্টেজ ও কমিট করুন</div>
+                    <p>ফাইল সেভ করে <span class="cmd">git add .</span> এবং <span class="cmd">git commit -m "Resolve merge conflict"</span> চালান।</p>
+                </div>
+            </div>
+
+            <div class="info-box success">
+                <div class="info-title">💡 VS Code-এর সুবিধা</div>
+                <p>VS Code-এ কনফ্লিক্ট দেখা দিলে সরাসরি <strong>"Accept Incoming Change"</strong> বা <strong>"Accept Current Change"</strong> বোতাম দেখায়, যা ক্লিক করে সহজেই কনফ্লিক্ট সমাধান করা যায়।</p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 9: স্ট্যাশিং ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">09</div>
+                <h2 class="section-title">গিট স্ট্যাশিং — কাজ সাময়িকভাবে লুকিয়ে রাখা</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">📌</span> স্ট্যাশিং কী এবং কেন প্রয়োজন?</h3>
+            <div class="card">
+                <p>
+                    কাজের মাঝপথে অনেকগুলো ফাইলে অসম্পূর্ণ পরিবর্তন (Uncommitted changes) থাকা অবস্থায় হঠাৎ জরুরি ফিক্সের নির্দেশ আসলে — অসম্পূর্ণ কাজ কমিট করা সম্ভব হয় না। এই পরিস্থিতিতে অসম্পূর্ণ কাজগুলো সাময়িকভাবে একটি নিরাপদ জায়গায় লুকিয়ে রেখে ওয়ার্কিং ডিরেক্টরি ক্লিন করার জন্য <strong>স্ট্যাশিং</strong> ব্যবহার করা হয়।
+                </p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">⌨️</span> স্ট্যাশিং কমান্ডসমূহ</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git stash</td>
+                        <td>অসম্পূর্ণ পরিবর্তনগুলো সাময়িকভাবে স্ট্যাশে সেভ করে এবং ওয়ার্কিং ডিরেক্টরি ক্লিন করে। এরপর জরুরি কাজ করতে পারবেন।</td>
+                    </tr>
+                    <tr>
+                        <td>git stash list</td>
+                        <td>স্ট্যাশে কী কী কাজ সেভ করা আছে তার তালিকা দেখায়।</td>
+                    </tr>
+                    <tr>
+                        <td>git stash pop</td>
+                        <td>স্ট্যাশ করা কাজগুলো ওয়ার্কিং ডিরেক্টরিতে ফিরিয়ে আনে <strong>এবং</strong> স্ট্যাশ লিস্ট থেকে সেই এন্ট্রি মুছে ফেলে।</td>
+                    </tr>
+                    <tr>
+                        <td>git stash apply</td>
+                        <td>স্ট্যাশ করা কাজ ফিরিয়ে আনে, <strong>কিন্তু</strong> স্ট্যাশ লিস্টে এন্ট্রি রেখে দেয়। (pop-এর বিপরীত)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="comparison">
+                <div class="comp-card" style="border-top: 3px solid var(--green);">
+                    <h4 style="color: var(--green-light);">git stash pop</h4>
+                    <p style="font-size: 13px;">কাজ ফেরত আনে ✅<br>স্ট্যাশ লিস্ট থেকে মুছে ফেলে ✅</p>
+                </div>
+                <div class="comp-card" style="border-top: 3px solid var(--primary);">
+                    <h4 style="color: var(--primary-light);">git stash apply</h4>
+                    <p style="font-size: 13px;">কাজ ফেরত আনে ✅<br>স্ট্যাশ লিস্টে রেখে দেয় 🔄</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 10: ট্যাগিং ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">10</div>
+                <h2 class="section-title">গিট ট্যাগিং — ভার্সন চিহ্নিত করা</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🏷️</span> ট্যাগিং কী?</h3>
+            <p>গিট-এ নির্দিষ্ট কোনো কমিটকে বিশেষভাবে চিহ্নিত করতে বা সফটওয়্যারের কোনো নতুন ভার্সন/রিলিজ মার্ক করতে ট্যাগিং ব্যবহার করা হয়।</p>
+
+            <h3 class="subsection-title"><span class="emoji">📦</span> ট্যাগের প্রকারভেদ</h3>
+
+            <div class="comparison">
+                <div class="comp-card" style="border-top: 3px solid var(--primary);">
+                    <h4 style="color: var(--primary-light);">অ্যানোটেটেড ট্যাগ (Annotated)</h4>
+                    <p style="font-size: 13px;">মেসেজ ও বিস্তারিত তথ্যসহ তৈরি করা যায়। প্রোডাকশন রিলিজের জন্য উপযুক্ত।</p>
+                    <div style="margin-top: 10px;">
+                        <span class="cmd" style="font-size: 11.5px;">git tag -a v1.0 -m "Release one"</span>
+                    </div>
+                </div>
+                <div class="comp-card" style="border-top: 3px solid var(--accent);">
+                    <h4 style="color: var(--accent-light);">লাইটওয়েট ট্যাগ (Lightweight)</h4>
+                    <p style="font-size: 13px;">শুধু ট্যাগের নাম দিয়ে তৈরি হয়, অতিরিক্ত কোনো মেসেজ বা তথ্য থাকে না।</p>
+                    <div style="margin-top: 10px;">
+                        <span class="cmd" style="font-size: 11.5px;">git tag v1.1</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">👀</span> ট্যাগ দেখার উপায়</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git tag</td>
+                        <td>তৈরি করা সকল ট্যাগের তালিকা দেখায়।</td>
+                    </tr>
+                    <tr>
+                        <td>git log --oneline</td>
+                        <td>হিস্ট্রিতে নির্দিষ্ট কমিটের পাশে ট্যাগ (যেমন: <span class="cmd">tag: v1.0</span>) দেখায়।</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ========== SECTION 11: রিবেস ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">11</div>
+                <h2 class="section-title">গিট রিবেস — ক্লিন হিস্ট্রি</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🔄</span> রিবেস কী এবং কেন প্রয়োজন?</h3>
+            <div class="card">
+                <p>
+                    সাধারণ মার্জে গিট একটি অতিরিক্ত <strong>"মার্জ কমিট"</strong> তৈরি করে। বারবার ব্রাঞ্চ তৈরি ও মার্জ করলে হিস্ট্রিতে এই মার্জ কমিটগুলো জমা হয়ে অগোছালো হয়ে যায়। এই অতিরিক্ত মার্জ কমিট এড়ানোর জন্যই <strong>রিবেস</strong> ব্যবহার করা হয়।
+                </p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">⚙️</span> রিবেস কীভাবে কাজ করে?</h3>
+            <p>রিবেস ফিচার ব্রাঞ্চের কমিটগুলোকে টার্গেট ব্রাঞ্চের সর্বশেষ কমিটের ওপর এক এক করে পুনরায় সাজিয়ে বা <strong>"রিপ্লে"</strong> করে দেয়। ফলে হিস্ট্রি দেখে মনে হয় সব কাজ একটি ব্রাঞ্চেই ক্রমানুসারে করা হয়েছে — একদম <strong>ক্লিন ও লিনিয়ার</strong>।</p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">রিবেস কমান্ড</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="comment"># ফিচার ব্রাঞ্চে থাকা অবস্থায় রান করুন</span>
+<span class="keyword">git rebase</span> master
+                    </code>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">⚠️</span> মার্জ বনাম রিবেস</h3>
+
+            <div class="comparison">
+                <div class="comp-card" style="border-top: 3px solid var(--green);">
+                    <h4 style="color: var(--green-light);">🔀 Merge</h4>
+                    <p style="font-size: 13px;">অরিজিনাল হিস্ট্রি সংরক্ষিত থাকে। অতিরিক্ত মার্জ কমিট তৈরি হয়।<br><strong>কখন:</strong> অরিজিনাল হিস্ট্রি দেখতে চাইলে।</p>
+                </div>
+                <div class="comp-card" style="border-top: 3px solid var(--primary);">
+                    <h4 style="color: var(--primary-light);">📏 Rebase</h4>
+                    <p style="font-size: 13px;">হিস্ট্রি ক্লিন ও লিনিয়ার রাখে। কমিট হ্যাশ পরিবর্তন হয়ে যায়।<br><strong>কখন:</strong> পরিচ্ছন্ন হিস্ট্রি চাইলে।</p>
+                </div>
+            </div>
+
+            <div class="info-box danger">
+                <div class="info-title">🚫 সতর্কতা</div>
+                <p>রিবেস করলে পূর্বের কমিটগুলোর হ্যাশ (Hash) পরিবর্তন হয়ে যায়, অর্থাৎ এটি অরিজিনাল হিস্ট্রি নতুন করে লেখে (rewrite history)। শেয়ার করা বা পাবলিক ব্রাঞ্চে রিবেস করা থেকে বিরত থাকুন।</p>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 12: GitHub ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">12</div>
+                <h2 class="section-title">GitHub-এ কোড হোস্ট ও কোলাবোরেশন</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">☁️</span> GitHub কেন ব্যবহার করবেন?</h3>
+            <ul class="styled-list">
+                <li>লোকাল Git রিপোজিটরিগুলোকে অনলাইনে সুরক্ষিতভাবে হোস্ট বা সংরক্ষণ করা যায়।</li>
+                <li>একবার কোড গিটহাবে রাখলে ডিলিট না করা পর্যন্ত সারাজীবন সেখানে থাকে।</li>
+                <li>নিজের কাজ সমগ্র বিশ্বকে শোকেস করা যায় — পোর্টফোলিও হিসেবে কাজ করে।</li>
+            </ul>
+
+            <h3 class="subsection-title"><span class="emoji">📂</span> রিপোজিটরি তৈরি করা</h3>
+            <div class="step-container">
+                <div class="step" data-step="1">
+                    <div class="step-title">New Repository তৈরি করুন</div>
+                    <p>GitHub-এ "New Repository" অপশনে গিয়ে প্রোজেক্টের অর্থবহ নাম ও ডেসক্রিপশন দিন।</p>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-title">ভিজিবিলিটি সেট করুন</div>
+                    <p>সবার জন্য উন্মুক্ত রাখতে <strong>Public</strong>, গোপন রাখতে <strong>Private</strong> সিলেক্ট করুন।</p>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-title">README ফাইল যোগ করুন</div>
+                    <p>প্রোজেক্ট সম্পর্কে বিস্তারিত লিখে রাখতে একটি README (মার্কডাউন) ফাইল যুক্ত করুন।</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🔑</span> ক্লোনিং ও SSH অথেনটিকেশন</h3>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-dots">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                    <span class="code-label">ক্লোন ও পুশ কমান্ড</span>
+                </div>
+                <div class="code-body">
+                    <code>
+<span class="comment"># GitHub থেকে রিপোজিটরি ক্লোন করুন</span>
+<span class="keyword">git clone</span> &lt;repository-url&gt;
+
+<span class="comment"># কোড গিটহাবে পুশ করুন</span>
+<span class="keyword">git push</span> origin main
+                    </code>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-title">🔐 SSH Key সেটআপ</div>
+                <p>প্রাইভেট রিপোজিটরি ক্লোন বা পুশ করতে অথেনটিকেশন প্রয়োজন। লোকাল কম্পিউটারে একটি <strong>SSH Key</strong> তৈরি করে সেটি GitHub Settings → SSH and GPG Keys-এ যুক্ত করে দিন।</p>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🔗</span> রিমোট কানেকশন ও সিঙ্ক</h3>
+
+            <table class="cmd-table">
+                <thead>
+                    <tr>
+                        <th>কমান্ড</th>
+                        <th>কাজ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>git remote -v</td>
+                        <td>লোকাল রিপোজিটরি GitHub-এর কোন URL-এর সাথে যুক্ত তা দেখায়। ডিফল্ট নাম <span class="cmd">origin</span>।</td>
+                    </tr>
+                    <tr>
+                        <td>git push origin main</td>
+                        <td>লোকাল কমিট GitHub সার্ভারে পাঠায়।</td>
+                    </tr>
+                    <tr>
+                        <td>git pull</td>
+                        <td>রিমোট থেকে নতুন পরিবর্তন নামিয়ে আনে <strong>এবং</strong> লোকাল কোডের সাথে মার্জ করে।</td>
+                    </tr>
+                    <tr>
+                        <td>git fetch</td>
+                        <td>রিমোট থেকে পরিবর্তন নামিয়ে আনে, <strong>কিন্তু</strong> লোকালে মার্জ করে না।</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="comparison">
+                <div class="comp-card" style="border-top: 3px solid var(--green);">
+                    <h4 style="color: var(--green-light);">git pull</h4>
+                    <p style="font-size: 13px;">ডাউনলোড ✅ + মার্জ ✅<br>একটি কমান্ডে সব কাজ</p>
+                </div>
+                <div class="comp-card" style="border-top: 3px solid var(--primary);">
+                    <h4 style="color: var(--primary-light);">git fetch</h4>
+                    <p style="font-size: 13px;">শুধু ডাউনলোড ✅<br>মার্জ আলাদাভাবে করতে হবে</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SECTION 13: কুইক রেফারেন্স ========== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-number">13</div>
+                <h2 class="section-title">কুইক রেফারেন্স — সকল কমান্ড এক নজরে</h2>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🛠️</span> সেটআপ ও কনফিগারেশন</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-cmd">git config --global user.name "Name"</span>
+                    <span class="ref-desc">নাম সেট করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git config --global user.email "email"</span>
+                    <span class="ref-desc">ইমেইল সেট করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git init</span>
+                    <span class="ref-desc">নতুন রিপোজিটরি তৈরি</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git clone &lt;url&gt;</span>
+                    <span class="ref-desc">রিমোট রিপোজিটরি ডাউনলোড</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">📝</span> দৈনন্দিন কমান্ড</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-cmd">git status</span>
+                    <span class="ref-desc">বর্তমান অবস্থা দেখা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git add . | git add &lt;file&gt;</span>
+                    <span class="ref-desc">ফাইল স্টেজিং এরিয়ায় পাঠানো</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git commit -m "message"</span>
+                    <span class="ref-desc">স্ন্যাপশট সেভ করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git restore --staged &lt;file&gt;</span>
+                    <span class="ref-desc">ফাইল আনস্টেজ করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git log</span>
+                    <span class="ref-desc">বিস্তারিত হিস্ট্রি দেখা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git log --oneline</span>
+                    <span class="ref-desc">সংক্ষিপ্ত হিস্ট্রি দেখা</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">🌿</span> ব্রাঞ্চিং ও মার্জিং</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-cmd">git branch &lt;name&gt;</span>
+                    <span class="ref-desc">নতুন ব্রাঞ্চ তৈরি</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git switch &lt;name&gt;</span>
+                    <span class="ref-desc">ব্রাঞ্চ সুইচ করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git switch -c &lt;name&gt;</span>
+                    <span class="ref-desc">ব্রাঞ্চ তৈরি + সুইচ</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git merge &lt;name&gt;</span>
+                    <span class="ref-desc">ব্রাঞ্চ মার্জ করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git branch -d &lt;name&gt;</span>
+                    <span class="ref-desc">ব্রাঞ্চ ডিলিট করা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git rebase &lt;branch&gt;</span>
+                    <span class="ref-desc">ক্লিন হিস্ট্রির জন্য রিবেস</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">📦</span> স্ট্যাশিং ও ট্যাগিং</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-cmd">git stash</span>
+                    <span class="ref-desc">কাজ সাময়িকভাবে লুকানো</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git stash pop</span>
+                    <span class="ref-desc">লুকানো কাজ ফেরত আনা + মুছে ফেলা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git stash apply</span>
+                    <span class="ref-desc">লুকানো কাজ ফেরত আনা (রেখে দেওয়া)</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git stash list</span>
+                    <span class="ref-desc">স্ট্যাশ তালিকা দেখা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git tag -a v1.0 -m "msg"</span>
+                    <span class="ref-desc">অ্যানোটেটেড ট্যাগ তৈরি</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git tag v1.0</span>
+                    <span class="ref-desc">লাইটওয়েট ট্যাগ তৈরি</span>
+                </div>
+            </div>
+
+            <h3 class="subsection-title"><span class="emoji">☁️</span> রিমোট ও সিঙ্ক্রোনাইজেশন</h3>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <span class="ref-cmd">git remote -v</span>
+                    <span class="ref-desc">রিমোট কানেকশন দেখা</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git push origin main</span>
+                    <span class="ref-desc">কোড গিটহাবে পাঠানো</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git pull</span>
+                    <span class="ref-desc">ডাউনলোড + মার্জ</span>
+                </div>
+                <div class="ref-card">
+                    <span class="ref-cmd">git fetch</span>
+                    <span class="ref-desc">শুধু ডাউনলোড (মার্জ ছাড়া)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== FOOTER ========== -->
+        <div class="page-footer">
+            <div class="footer-brand">Git ও GitHub — সম্পূর্ণ বাংলা গাইড</div>
+            <p>এই নোটটি গিট ও গিটহাবের ফান্ডামেন্টাল ধারণা ও প্র্যাকটিক্যাল কমান্ডসমূহ সংক্ষেপে উপস্থাপন করে।</p>
+            <p style="margin-top: 8px; color: var(--text-muted);">📅 জুলাই ২০২৬ • সংস্করণ ১.০</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
